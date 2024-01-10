@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer id="color" src="sofa1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="commerce" poster="poster.webp" shadow-intensity="1" environment-image="legacy" camera-orbit="46.11deg 52.86deg 11.29m" field-of-view="30deg">
+      <button class="Hotspot" slot="hotspot-1" data-position="-0.2839716771973362m 0.5898420400844185m 0.6775841011491228m" data-normal="0.9786680230427048m 0.010303198633306839m 0.20518953377696092m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Sofa
+              Price:N250000</div>
+      </button><button class="Hotspot" slot="hotspot-2" data-position="2.490083989960009m 0.4230568259954455m -1.1857395595474376m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Side-Table</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-position="1.4288373855046441m 0.364329690325989m -0.17379357216012314m" data-normal="-0.00044053345709691013m 0.9999999004268917m 0.00007124942260348798m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Table2 Price:N50000</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+
+      <div class="controls" id="color-controls">
+        <button data-color="#ffffff">Default</button><br/>
+        <button data-color="#ffa09e"></button>
+        <br/>
+        <button data-color="#fcf22e"></button><br/>
+        <button data-color="#58aeff"></button>
+      </div>
+
+   
+    </model-viewer>  
+    <script>
+      const modelViewerColor = document.querySelector("model-viewer#color");
+      
+      document.querySelector('#color-controls').addEventListener('click', (event) => {
+        const colorString = event.target.dataset.color;
+        const [material] = modelViewerColor.model.materials;
+        material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+      });
+      </script>
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js"></script>
+  </body>
+</html>
